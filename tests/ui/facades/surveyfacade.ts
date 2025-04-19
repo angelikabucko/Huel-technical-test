@@ -26,6 +26,10 @@ export class SurveyFacade {
     await this.surveyPage.chooseAllReasons();
   }
 
+  async chooseAllOccasions() {
+    await this.surveyPage.chooseAllOccasions();
+  }
+
   async chooseContradictingReasons() {
     await this.surveyPage.chooseContradictingReasons();
   }
@@ -102,8 +106,12 @@ export class SurveyFacade {
     await this.surveyPage.chooseSomethingRefreshing();
   }
 
-  async chooseImNotPicky() {
-    await this.surveyPage.chooseImNotPicky();
+  async chooseImNotPickyFlavour() {
+    await this.surveyPage.chooseImNotPickyFlavour();
+  }
+
+  async chooseImNotPickyImportantFactor() {
+    await this.surveyPage.chooseImNotPickyImportantFactor();
   }
 
   async clickResultsButton() {
@@ -112,5 +120,9 @@ export class SurveyFacade {
 
   async isVisibleResultsMainCard() {
     await this.resultsPage.isVisibleResultsMainCard();
+  }
+
+  async isVisibleRecommendedProduct(product: string) {
+    await this.resultsPage.isVisibleRecommendedProduct(product);
   }
 }
