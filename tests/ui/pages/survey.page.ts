@@ -1,4 +1,4 @@
-import { type Locator, type Page } from '@playwright/test';
+import { expect, type Locator, type Page } from '@playwright/test';
 
 export class SurveyPage {
   readonly page: Page;
@@ -24,17 +24,20 @@ export class SurveyPage {
   readonly supplementChoice: Locator;
 
   //Flavour
+  readonly flavourPageHeading: Locator;
   readonly sweetFlavourChoice: Locator;
   readonly savouryFlavourChoice: Locator;
 
   //Important factor
+  readonly importantFactorPageHeading: Locator;
   readonly flexiblePortionsChoice: Locator;
   readonly somethingToChewChoice: Locator;
   readonly eatingOnTheGoChoice: Locator;
   readonly somethingRefreshing: Locator;
 
   //Reusable choice
-  readonly notPickyChoice: Locator;
+  readonly notPickyChoiceImportantFactor: Locator;
+  readonly notPickyChoiceFlavour: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -56,15 +59,18 @@ export class SurveyPage {
     this.snackChoice = page.getByRole('checkbox', { name: 'Snack' });
     this.supplementChoice = page.getByRole('checkbox', { name: 'Supplement' });
 
+    this.flavourPageHeading = page.getByRole('heading', { name: 'What are you in the mood for?' });
     this.sweetFlavourChoice = page.getByRole('radio', { name: 'Sweet' });
     this.savouryFlavourChoice = page.getByRole('radio', { name: 'Savoury' });
 
+    this.importantFactorPageHeading = page.getByRole('heading', { name: 'What matters most to you?' });
     this.flexiblePortionsChoice = page.getByRole('radio', { name: 'Flexible portions' });
     this.somethingToChewChoice = page.getByRole('radio', { name: 'Something to chew' });
     this.eatingOnTheGoChoice = page.getByRole('radio', { name: 'Eating on the go' });
     this.somethingRefreshing = page.getByRole('radio', { name: 'Something refreshing' });
 
-    this.notPickyChoice = page.getByRole('radio', { name: `I'm not picky` });
+    this.notPickyChoiceImportantFactor = page.getByRole('radio', { name: `I'm not picky` });
+    this.notPickyChoiceFlavour = page.getByRole('radio', { name: `I’m not picky` });
   }
 
   async clickGetStartedButton() {
@@ -147,8 +153,14 @@ export class SurveyPage {
     await this.somethingRefreshing.check();
   }
 
-  async chooseImNotPicky() {
-    await this.notPickyChoice.check();
+  async chooseImNotPickyFlavour() {
+    await expect(this.flavourPageHeading).toBeVisible();
+    await this.notPickyChoiceFlavour.check();
+  }
+
+  async chooseImNotPickyImportantFactor() {
+    await expect(this.importantFactorPageHeading).toBeVisible();
+    await this.notPickyChoiceImportantFactor.check();
   }
 
   async chooseAllReasons() {
@@ -164,5 +176,13 @@ export class SurveyPage {
   async chooseContradictingReasons() {
     await this.chooseLoseWeight();
     await this.chooseGainWeight();
+  }
+
+  async chooseAllOccasions() {
+    await this.chooseBreakfast();
+    await this.chooseLunch();
+    await this.chooseDinner();
+    await this.chooseSnack();
+    await this.chooseSupplement();
   }
 }
