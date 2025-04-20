@@ -2,6 +2,7 @@ export type ProductName = 'blackEdition' | 'hotSavouryPouches' | 'readyToDrink' 
 
 export interface ProductInformaion {
   name: string;
+  //Additional important information that can be made mandatory for future tests
   price?: number;
   usesTags?: string;
   description?: string;
