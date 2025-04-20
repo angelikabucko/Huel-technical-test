@@ -30,10 +30,6 @@ export class SurveyFacade {
     await this.surveyPage.chooseAllOccasions();
   }
 
-  async chooseContradictingReasons() {
-    await this.surveyPage.chooseContradictingReasons();
-  }
-
   async chooseEatHealthier() {
     await this.surveyPage.chooseEatHealthier();
   }
