@@ -1,11 +1,10 @@
-# Huel-technical-test
+# Huel technical test
 
 Technical assessment for a QA Engineer at Huel
 
 # Overview
 
-This repository contains an automated test framework built using [Playwright](https://playwright.dev/) and [TypeScript]
-(https://www.typescriptlang.org/).
+This repository contains an automated test framework built using [Playwright](https://playwright.dev/) and [TypeScript](https://www.typescriptlang.org/).
 
 # Brief explanation of my approach
 
