@@ -4,9 +4,9 @@ import { SignUpPage } from '../pages/sign-up.page';
 import { ResultsPage } from '../pages/results.page';
 
 export class SurveyFacade {
-  readonly surveyPage: SurveyPage;
-  readonly signUpPage: SignUpPage;
-  readonly resultsPage: ResultsPage;
+  private readonly surveyPage: SurveyPage;
+  private readonly signUpPage: SignUpPage;
+  private readonly resultsPage: ResultsPage;
 
   constructor(page: Page) {
     this.surveyPage = new SurveyPage(page);
@@ -119,10 +119,10 @@ export class SurveyFacade {
   }
 
   async isVisibleResultsMainCard() {
-    await this.resultsPage.isVisibleResultsMainCard();
+    return await this.resultsPage.isVisibleResultsMainCard();
   }
 
   async isVisibleRecommendedProduct(product: string) {
-    await this.resultsPage.isVisibleRecommendedProduct(product);
+    return await this.resultsPage.isVisibleRecommendedProduct(product);
   }
 }
