@@ -1,12 +1,12 @@
 import { type Locator, type Page } from '@playwright/test';
 
 export class SignUpPage {
-  readonly page: Page;
+  private readonly page: Page;
 
-  readonly emailInput: Locator;
-  readonly becomeHueliganButton: Locator;
+  private readonly emailInput: Locator;
+  private readonly becomeHueliganButton: Locator;
 
-  readonly resultsButton: Locator;
+  private readonly resultsButton: Locator;
 
   constructor(page: Page) {
     this.page = page;

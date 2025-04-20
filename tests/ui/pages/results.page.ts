@@ -1,26 +1,36 @@
 import { expect, type Locator, type Page } from '@playwright/test';
 
 export class ResultsPage {
-  readonly page: Page;
+  private readonly page: Page;
 
-  readonly resultsHeading: Locator;
-  readonly mainCardContent: Locator;
+  private readonly resultsHeading: Locator;
+  private readonly mainCardContent: Locator;
   // eslint-disable-next-line no-unused-vars
-  readonly recommendedProduct: (product: string) => Locator;
+  private readonly recommendedProduct: (product: string) => Locator;
 
   constructor(page: Page) {
     this.page = page;
 
     this.resultsHeading = page.getByRole('heading', { name: `You're almost there!` });
-    this.mainCardContent = page.locator('.ResultsView_ResultsView__main-card__GK02F'); //TODO: Explain weaknesses of targeting by class
-    this.recommendedProduct = (product: string) => this.page.getByRole('heading', { name: product, exact: true }); //TODO: Change product name
+    this.mainCardContent = page.locator('.ResultsView_ResultsView__main-card__GK02F');
+    this.recommendedProduct = (product: string) => this.page.getByRole('heading', { name: product, exact: true });
   }
 
   async isVisibleResultsMainCard() {
-    await expect(this.mainCardContent).toBeVisible();
+    try {
+      await expect(this.mainCardContent).toBeVisible();
+      return true;
+    } catch {
+      return false;
+    }
   }
 
   async isVisibleRecommendedProduct(product: string) {
-    await expect(this.recommendedProduct(product), { message: 'The expected product is not visible' }).toBeVisible();
+    try {
+      await expect(this.recommendedProduct(product)).toBeVisible();
+      return true;
+    } catch {
+      return false;
+    }
   }
 }

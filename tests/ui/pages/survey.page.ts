@@ -1,43 +1,43 @@
 import { expect, type Locator, type Page } from '@playwright/test';
 
 export class SurveyPage {
-  readonly page: Page;
+  private readonly page: Page;
 
   //Buttons
-  readonly getStartedButton: Locator;
-  readonly continueButton: Locator;
+  private readonly getStartedButton: Locator;
+  private readonly continueButton: Locator;
 
   //Reason
-  readonly eatHealthierChoice: Locator;
-  readonly loseWeightChoice: Locator;
-  readonly gainWeightChoice: Locator;
-  readonly fitnessGoalsChoice: Locator;
-  readonly saveTimeChoice: Locator;
-  readonly saveMoneyChoice: Locator;
-  readonly moreSustainableChoice: Locator;
+  private readonly eatHealthierChoice: Locator;
+  private readonly loseWeightChoice: Locator;
+  private readonly gainWeightChoice: Locator;
+  private readonly fitnessGoalsChoice: Locator;
+  private readonly saveTimeChoice: Locator;
+  private readonly saveMoneyChoice: Locator;
+  private readonly moreSustainableChoice: Locator;
 
   //Occasion
-  readonly breakfastChoice: Locator;
-  readonly lunchChoice: Locator;
-  readonly dinnerChoice: Locator;
-  readonly snackChoice: Locator;
-  readonly supplementChoice: Locator;
+  private readonly breakfastChoice: Locator;
+  private readonly lunchChoice: Locator;
+  private readonly dinnerChoice: Locator;
+  private readonly snackChoice: Locator;
+  private readonly supplementChoice: Locator;
 
   //Flavour
-  readonly flavourPageHeading: Locator;
-  readonly sweetFlavourChoice: Locator;
-  readonly savouryFlavourChoice: Locator;
+  private readonly flavourPageHeading: Locator;
+  private readonly sweetFlavourChoice: Locator;
+  private readonly savouryFlavourChoice: Locator;
 
   //Important factor
-  readonly importantFactorPageHeading: Locator;
-  readonly flexiblePortionsChoice: Locator;
-  readonly somethingToChewChoice: Locator;
-  readonly eatingOnTheGoChoice: Locator;
-  readonly somethingRefreshing: Locator;
+  private readonly importantFactorPageHeading: Locator;
+  private readonly flexiblePortionsChoice: Locator;
+  private readonly somethingToChewChoice: Locator;
+  private readonly eatingOnTheGoChoice: Locator;
+  private readonly somethingRefreshing: Locator;
 
   //Reusable choice
-  readonly notPickyChoiceImportantFactor: Locator;
-  readonly notPickyChoiceFlavour: Locator;
+  private readonly notPickyChoiceImportantFactor: Locator;
+  private readonly notPickyChoiceFlavour: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -45,7 +45,7 @@ export class SurveyPage {
     this.getStartedButton = page.getByRole('button', { name: 'Get started' });
     this.continueButton = page.getByRole('button', { name: 'Continue' });
 
-    this.eatHealthierChoice = page.getByRole('checkbox', { name: 'Eat Healthier' }); //TODO: Explain why I decided to use this one and then another option would be getByText('Eat healthier') which would be more relvant to what user actually sees
+    this.eatHealthierChoice = page.getByRole('checkbox', { name: 'Eat Healthier' });
     this.loseWeightChoice = page.getByRole('checkbox', { name: 'Lose weight' });
     this.gainWeightChoice = page.getByRole('checkbox', { name: 'Gain weight' });
     this.fitnessGoalsChoice = page.getByRole('checkbox', { name: 'Fitness goals' });
@@ -171,11 +171,6 @@ export class SurveyPage {
     await this.chooseSaveTime();
     await this.chooseSaveMoney();
     await this.chooseMoreSustainable();
-  }
-
-  async chooseContradictingReasons() {
-    await this.chooseLoseWeight();
-    await this.chooseGainWeight();
   }
 
   async chooseAllOccasions() {
